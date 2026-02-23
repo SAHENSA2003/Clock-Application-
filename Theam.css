@@ -1,0 +1,71 @@
+:root {
+  /*Background color*/
+  --bg-primary-color: #1a1a1a;
+  --bg-secondary-color: #363636;
+  --bg-third-color: #5a5959;
+  --bg-task-color: #707070;
+  --bg-delete-color: #f03b3b;
+  --bg-button-color: #1a1a1a;
+
+
+  /*font-color*/
+  --primary-font-color: #e4e2e2;
+  --secondary-font-color: #cccaca;
+  --third-font-color: #9b9b9b;
+
+  /*font size variables */
+  --font-size-sm: 5px;
+  --font-size-md: 15px;
+  --font-size-lg: 25px;
+  --font-size-xl: 35px;
+  --font-size-xxl: 50px;
+
+  /*padding variables*/
+
+  --nav-padding: 15px 30px;
+  --section-padding: 15px 30px;
+  --padding-sm: 5px;
+  --padding-md: 10px;
+  --padding-lg: 15px;
+  --padding-xl: 20px;
+  --padding-xxl: 30px;
+  /*Margin variables */
+  --margin-sm: 5px;
+  --margin-md: 10px;
+  --margin-lg: 15px;
+  --margin-xl: 25px;
+  --margin-xxl: 35px;
+  --margin-sxl: 50px;
+  /* Border radius variables */
+
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  --radius-xl: 20px;
+  --radius-xxl: 30px;
+  --radius-circle: 50%;
+
+  /*Gap variable */
+  --gutter-sm: 5px;
+  --gutter-md: 15px;
+  --gutter-lg: 25px;
+  --gutter-xl: 35px;
+  --gutter-xxl: 50px;
+}
+
+/*Special class Name */
+
+ .hidden {
+    display: none;
+}
+
+.initial {
+    display: initial;
+}
+.red{
+  color: red;
+}
+.blue{
+  color: #4242f0;
+}
+

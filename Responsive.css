@@ -1,0 +1,79 @@
+@media (max-width : 600px) {
+
+    /*clock style for small devices */
+    .Clock {
+        height: 200px;
+        width: 200px;
+        right: 50%;
+        left: 20%;
+    }
+
+    .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    .hour-marker {
+        width: 2px;
+        height: 8px;
+        transform-origin: center 85px;
+    }
+
+    .hour-marker:nth-child(3n) {
+        height: 15px;
+        width: 3px;
+
+    }
+
+    .hour-hand {
+        height: 30px;
+        width: 3px;
+    }
+
+    .minute-hand {
+        height: 40px;
+        width: 2px;
+
+    }
+
+    .second-hand {
+        height: 35px;
+        width: 1px;
+    }
+
+    .Digital_Clock {
+        position: absolute;
+        bottom: 35%;
+        left: 20%;
+    }
+
+    /*Stop watch timer */
+    .stopwatch .userInputField {
+        width: 80vw;
+        margin-top: var(--margin-md);
+    }
+
+    .stopwatch .userInputField div {
+        font-size: var(--font-size-md);
+    }
+
+    .inputNumbers {
+        width: 70vw;
+        gap: var(--gutter-lg);
+        margin-top: var(--margin-lg);
+    }
+
+    .inputNumbers button {
+        height: 50px;
+        width: 50px;
+        font-size: 20px;
+    }
+   
+    .inputNumbers button:last-child svg{
+    height: 30px;
+    width: 30px;
+    margin-bottom: 5px;
+}
+}
