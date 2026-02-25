@@ -110,7 +110,7 @@
             </div>
         </div>
         <div class="stopwatch hidden">
-            <h1>Stopwatch</h1>
+            <h1>Timer</h1>
             <div class="userInputField">
                 <div class="Hour">
                     <span class="Num">00</span>
@@ -148,13 +148,40 @@
             </div>
         </div>
         <div class="timer hidden">
-            <h1>Timer</h1>
+            <h1>StopWatch</h1>
+
+            <div class="timerContainer">
+                <div class="timeSection">
+                    <span class="h">00</span><span>:</span><span class="m">00</span><span>:</span><span
+                        class="s">00</span><span>:</span><span class="me">00</span>
+                </div>
+            </div>
+
+            <div class="timerRestPlay">
+                <div class="palyPause">
+                   <svg height='30px' width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff">
+                        <path
+                            d="M6 20.1957V3.80421C6 3.01878 6.86395 2.53993 7.53 2.95621L20.6432 11.152C21.2699 11.5436 21.2699 12.4563 20.6432 12.848L7.53 21.0437C6.86395 21.46 6 20.9812 6 20.1957Z">
+                        </path>
+                    </svg>
+                </div>
+
+                <div class="StopReset">
+                    <svg height="30px" width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff">
+                        <path
+                            d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2V4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 9.25022 5.38734 6.82447 7.50024 5.38451L7.5 8H9.5V2L3.5 2V4L5.99918 3.99989C3.57075 5.82434 2 8.72873 2 12Z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
         </div>
+
+
     </main>
 
-    
 
-     <div class="toast" id="toast"></div>
+
+    <div class="toast" id="toast"></div>
 
     <script src="script.js"></script>
 </body>

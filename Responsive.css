@@ -70,10 +70,21 @@
         width: 50px;
         font-size: 20px;
     }
-   
-    .inputNumbers button:last-child svg{
-    height: 30px;
-    width: 30px;
-    margin-bottom: 5px;
-}
+
+    .inputNumbers button:last-child svg {
+        height: 30px;
+        width: 30px;
+        margin-bottom: 5px;
+    }
+
+
+    .timerContainer {
+        height: 300px;
+        width: 300px;
+
+    }
+
+    .timeSection span {
+        font-size: 30px;
+    }
 }

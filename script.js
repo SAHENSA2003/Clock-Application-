@@ -9,6 +9,10 @@ const clock = select('.clock');
 const stopwatch = select('.stopwatch');
 const timer = select('.timer');
 
+const PlaySvg = `<svg height='30px' width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff"><path d="M6 20.1957V3.80421C6 3.01878 6.86395 2.53993 7.53 2.95621L20.6432 11.152C21.2699 11.5436 21.2699 12.4563 20.6432 12.848L7.53 21.0437C6.86395 21.46 6 20.9812 6 20.1957Z"></path></svg>`
+const pauseSvg = `<svg heigh='30px' width='30px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff"><path d="M6 5H8V19H6V5ZM16 5H18V19H16V5Z"></path></svg>`;
+const crossSvg = `<svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>`;
+
 let fields = [clock, stopwatch, timer];
 function activeSection(initial1, hidden1, hidden2) {
     fields.forEach(field => {
@@ -66,18 +70,18 @@ function Clock() {
 
 
     setInterval(() => {
-        second.textContent = `: ${new Date().getSeconds()}`;
+        second.textContent = `: ${String(new Date().getSeconds()).padStart(2, '0')}`;
     }, 1000);
     let delaySeconds = (60 - new Date().getSeconds()) * 1000;
     const TwelveHour = 60 * 60 * 1000;
     function UpdateMH() {
-        minute.textContent = `: ${new Date().getMinutes()}`;
+        minute.textContent = `: ${String(new Date().getMinutes()).padStart(2, '0')}`;
         if (new Date().getHours() === 0) {
-            Hour.textContent = `1`;
+            Hour.textContent = `01`;
         } else if (new Date().getHours() % 12 === 0) {
             Hour.textContent = `12`;
         } else {
-            Hour.textContent = `${new Date().getHours() % 12}`;
+            Hour.textContent = `${String(new Date().getHours() % 12).padStart(2, '0')}`;
         }
 
 
@@ -117,12 +121,10 @@ function Clock() {
 };
 
 
-function StopWatch() {
+function Timer() {
     const ResetSvg = `<svg height="30px" width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff"><path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2V4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 9.25022 5.38734 6.82447 7.50024 5.38451L7.5 8H9.5V2L3.5 2V4L5.99918 3.99989C3.57075 5.82434 2 8.72873 2 12Z"></path></svg>
 `
-    const PlaySvg = `<svg height='30px' width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff"><path d="M6 20.1957V3.80421C6 3.01878 6.86395 2.53993 7.53 2.95621L20.6432 11.152C21.2699 11.5436 21.2699 12.4563 20.6432 12.848L7.53 21.0437C6.86395 21.46 6 20.9812 6 20.1957Z"></path></svg>`
-    const pauseSvg = `<svg heigh='30px' width='30px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff"><path d="M6 5H8V19H6V5ZM16 5H18V19H16V5Z"></path></svg>`;
-    const crossSvg = `<svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffff"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>`;
+
     /* Creating input Number  */
     const InputNumbers = select('.inputNumbers');
 
@@ -366,16 +368,115 @@ function StopWatch() {
 }
 
 
+function StopWatch() {
+    const HourDiv = select('.h');
+    const minDiv = select('.m');
+    const secDiv = select('.s');
+    const MilleSecDiv = select('.me');
+    const Res = select('.StopReset');
+    console.log(MilleSecDiv);
+    const PlayPause = select('.timer .palyPause');
+    let Start = false;
+    let TimesArray = [HourDiv, minDiv, secDiv, MilleSecDiv];
+    let HourTick = 0;
+    let minTick = 0;
+    let secTick = 0;
+    let MilleSecond = 0;
+    let TimeInterval = null;
+    let colorInterval = [];
+
+    function OnPlay() {
+        TimeInterval = setInterval(() => {
+            MilleSecond++;
+            if (minTick === 60) {
+                HourTick++;
+                minTick = 0;
+            }
+            if (secTick === 60) {
+                minTick++;
+
+                secTick = 0;
+            }
+            if (MilleSecond === 99) {
+                secTick++;
+                MilleSecond = 0;
+                MilleSecDiv.textContent = '00';
+            }
+
+            MilleSecDiv.textContent = String(MilleSecond).padStart(2, '0');
+            secDiv.textContent = String(secTick).padStart(2, '0');
+            minDiv.textContent = String(minTick).padStart(2, '0');
+            HourDiv.textContent = String(HourTick).padStart(2, '0');
+
+        }, 10);
+    }
+    function OnPause() {
+        clearInterval(TimeInterval);
+        clearInterval(colorInterval);
+    };
+    function Blinking(value) {
+        TimesArray.forEach((TimeDiv, index) => {
+            if (value) {
+                TimeDiv.classList.add('blinking');
+                colorInterval[index] = setInterval(() => {
+                    const randomColor = `rgb(
+                ${Math.floor(Math.random() * 255)}, 
+                ${Math.floor(Math.random() * 255)}, 
+                ${Math.floor(Math.random() * 255)}
+            )`;
+                    TimeDiv.style.color = randomColor;
+                }, 1000);
+            } else {
+                TimeDiv.classList.remove('blinking');
+                clearInterval(colorInterval[index]);
+                TimeDiv.style.color = '';
+            }
+        })
+    }
+
+    function restTime() {
+        clearInterval(TimeInterval);
+        colorInterval.forEach(interval => clearInterval(interval));
+        colorInterval = [];
+        HourTick = 0;
+        minTick = 0;
+        secTick = 0;
+        MilleSecond = 0;
+        Start = false;
+        TimesArray.forEach(TimeDiv => {
+            TimeDiv.textContent = `00`;
+            TimeDiv.style.color = '';
+        })
+    }
+    PlayPause.addEventListener('click', (autoObject) => {
+        autoObject.preventDefault();
+        console.log(autoObject);
+        Start = !Start;
+        if (Start) {
+            PlayPause.innerHTML = `${pauseSvg}`;
+            OnPlay();
+            Blinking(false)
+        }
+        if (!Start) {
+            PlayPause.innerHTML = `${PlaySvg}`;
+            OnPause();
+            Blinking(true);
+        }
+    });
+
+    Res.addEventListener('click', (autoObject) => {
+        autoObject.preventDefault();
+        restTime();
+        Blinking(false);
+    });
 
 
-
-
-
-function Timer() {
 
 
 };
+
 Clock();
+Timer();
 StopWatch();
 const Header = select('header');
 
